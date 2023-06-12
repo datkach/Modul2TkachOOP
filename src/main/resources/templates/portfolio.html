@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мое портфолио</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .about-me {
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-me-text {
+            flex: 1;
+        }
+
+        .about-me-photo {
+            flex: 1;
+            text-align: right;
+        }
+
+        .about-me-photo img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .certificates {
+            background-color: #fff;
+        }
+
+        .certificates img {
+            max-width: 50%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .resume {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        .resume img {
+            max-width: 50%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>My portfolio site</h1>
+</header>
+
+<section class="about-me">
+    <div class="about-me-text">
+        <h2>About Me</h2>
+        <p th:text="${aboutMe.getAboutMe()}"></p>
+    </div>
+    <div class="about-me-photo">
+        <img src="/images/photo_5193057379095268124_y.jpg" alt="Мое фото">
+    </div>
+</section>
+
+<div class="certificates" th:each="work : ${works}">
+    <h2 th:text="${work.title}"></h2>
+    <p th:text="${work.description}"></p>
+    <img th:src="@{/images/__${work.image}__}" alt=""/>
+</div>
+
+<section class="resume">
+    <h2>Resume</h2>
+    <p th:text="${aboutMe.getResume()}"></p>
+    <img src="/images/resumeq.PNG" alt="Resume">
+</section>
+
+</body>
+</html>
+
